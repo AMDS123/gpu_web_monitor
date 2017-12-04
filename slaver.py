@@ -113,7 +113,7 @@ while True:
     data = json.dumps(mean_info)
     try:
         response = requests.get(url, data = data)
-        print(u'HTTP状态码:', response.status_code)
+        print(u'HTTP状态码:' + ' ' + response.status_code)
     except Exception as e:
         print(e)
     time.sleep(1)
