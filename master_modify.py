@@ -6,8 +6,7 @@ import json
 import itchat
 import argparse
 from threading import Thread, Lock
-from http.server import HTTPServer
-from http.server import BaseHTTPRequestHandler
+from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 
 class CustomHandler(BaseHTTPRequestHandler):
     alert_record = { }
