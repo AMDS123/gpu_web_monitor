@@ -80,7 +80,7 @@ def report_server():
     for slaver_address in sorted(info_record.keys()):
         report.append(slaver_address)
     lock.release()
-    report = '\n'.join(report)
+    # report = '\n'.join(report)
     return report
 
 def report_gpu(slaver_address = None):
@@ -121,7 +121,7 @@ def report_user():
     lock.release()
     usage_list = sorted(usage_dict.items(), key = lambda x: x[1])
     report = [u'用户显存占用排序：'] + ['%s : %dM' % (n, u) for n, u in usage_list]
-    report = '\n'.join(report)
+    # report = '\n'.join(report)
     return report
 
 
