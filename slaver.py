@@ -12,6 +12,7 @@ import psutil
 import argparse
 import requests
 import subprocess
+import socket
 
 def get_owner(pid):
     try:
@@ -21,6 +22,10 @@ def get_owner(pid):
                 return pwd.getpwuid(uid).pw_name
     except:
         return None
+
+def get_hostname():
+    hostname = socket.gethostname()
+    return hostname
 
 def get_info():
     info = { 'gpu': [], 'process': [] }
@@ -107,13 +112,14 @@ name_dict = dict([
     for line in open('username_to_wechatname.txt')
 ])
 mean_info = None
-
+hostname = get_hostname()
 while True:
     curr_info = get_info()
     if mean_info is None:
         mean_info = curr_info
     else:
         mean_info = running_mean(mean_info, curr_info, 0.9)
+    mean_info['hostname'] = hostname
     data = json.dumps(mean_info)
     try:
         response = requests.get(url, data = data)

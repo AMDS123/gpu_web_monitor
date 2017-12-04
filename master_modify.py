@@ -91,7 +91,8 @@ def report_gpu(slaver_address = None):
     else:
         address_list = [slaver_address]
     for slaver_address in address_list:
-        report.append(u'服务器地址: %s' % slaver_address)
+        hostname = info_record[slaver_address]['hostname']
+        report.append(u'服务器名称: %s' % hostname)
         gi_list = info_record[slaver_address]['gpu']
         # pi_list = info_record[slaver_address]['process']
         for gpuid, gi in enumerate(gi_list):
