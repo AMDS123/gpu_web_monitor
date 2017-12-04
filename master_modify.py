@@ -71,7 +71,7 @@ def alert_waste(info, alert_record):
                 friend[0].send('\n'.join(alerting))
 
 def report_server():
-    report = ['服务器列表：']
+    report = [u'服务器列表：']
     lock.acquire()
     for slaver_address in sorted(info_record.keys()):
         report.append(slaver_address)
@@ -116,7 +116,7 @@ def report_user():
             usage_dict[wechatname] = usage_dict.get(wechatname, 0) + mem_usage
     lock.release()
     usage_list = sorted(usage_dict.items(), key = lambda x: x[1])
-    report = ['用户显存占用排序：'] + ['%s : %dM' % (n, u) for n, u in usage_list]
+    report = [u'用户显存占用排序：'] + ['%s : %dM' % (n, u) for n, u in usage_list]
     report = '\n'.join(report)
     return report
 
@@ -172,7 +172,10 @@ from flask import request
 app = Flask(__name__)
 @ app.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('home.html', gpu_list=report_gpu(), user_list=report_user(), server_list=report_server())
+    gpu_msg = report_gpu()
+    user_msg = report_user()
+    server_msg = report_server()
+    return render_template('home.html', gpu_list=gpu_msg, user_list=user_msg, server_list=server_msg)
 
 
 if __name__ =='__main__':
