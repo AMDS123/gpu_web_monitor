@@ -43,7 +43,7 @@ def get_info():
         gpuid, pid, program, mem_usage = status[0]
         username = get_owner(int(pid))
         if username is None:
-            print('进程已经不存在')
+            print(u'进程已经不存在')
             continue
         wechatname = name_dict.get(username, username)
         try:
@@ -52,7 +52,7 @@ def get_info():
             time.sleep(0.5)
             cpu_percent = p.cpu_percent()
         except psutil.NoSuchProcess:
-            print('进程已经不存在')
+            print(u'进程已经不存在')
             continue
         info['process'].append({
             'gpuid': int(gpuid),
@@ -93,8 +93,8 @@ def running_mean(mean_info, curr_info, decay):
     return new_info
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--address', required = True, help = 'master服务器IP地址')
-parser.add_argument('--port', default = '5678', help = 'master服务器端口，默认5678')
+parser.add_argument('--address', required = True, help = u'master服务器IP地址')
+parser.add_argument('--port', default = '5678', help = u'master服务器端口，默认5678')
 opt = parser.parse_args()
 
 url = 'http://%s:%s' % (opt.address, opt.port)
@@ -113,7 +113,7 @@ while True:
     data = json.dumps(mean_info)
     try:
         response = requests.get(url, data = data)
-        print('HTTP状态码:', response.status_code)
+        print(u'HTTP状态码:', response.status_code)
     except Exception as e:
         print(e)
     time.sleep(1)
