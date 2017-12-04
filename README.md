@@ -9,6 +9,7 @@
 pip install itchat
 pip install psutil
 pip install requests
+pip install flask
 ```
 
 3. Select a server as master server and run
