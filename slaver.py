@@ -120,4 +120,4 @@ while True:
         print(u'HTTP状态码:' + ' ' + str(response.status_code))
     except Exception as e:
         print(e)
-    time.sleep(1)
+    time.sleep(10)
