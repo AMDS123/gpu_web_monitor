@@ -6,6 +6,12 @@
 
 </head>
 <body>
+
+<h1>GPU List</h1>
+{% for gpu in gpu_list %}
+	{{gpu}}</br>
+{% endfor %}
+
 <h1>Server List</h1>
 {% for server in server_list %}
 	{{server}}</br>
@@ -18,9 +24,5 @@
 {% endfor %}
 </br>
 
-<h1>GPU List</h1>
-{% for gpu in gpu_list %}
-	{{gpu}}</br>
-{% endfor %}
 </body>
 </html>

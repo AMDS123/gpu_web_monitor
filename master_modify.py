@@ -93,16 +93,16 @@ def report_gpu(slaver_address = None):
     for slaver_address in address_list:
         report.append(u'服务器地址: %s' % slaver_address)
         gi_list = info_record[slaver_address]['gpu']
-        pi_list = info_record[slaver_address]['process']
+        # pi_list = info_record[slaver_address]['process']
         for gpuid, gi in enumerate(gi_list):
             report.append(u'GPU%d 显存%dM/%dM 使用率%d%%' % (
                 gpuid, int(gi['mem_usage']), int(gi['mem_total']), int(gi['percent'])
             ))
-        report.append('进程列表')
-        for pi in pi_list:
-            report.append(u'GPU%d %s %s 显存%dM CPU占比%d%%' % (
-                pi['gpuid'], pi['username'], pi['wechatname'], int(pi['mem_usage']), int(pi['cpu_percent'])
-            ))
+        # report.append('进程列表')
+        # for pi in pi_list:
+        #     report.append(u'GPU%d %s %s 显存%dM CPU占比%d%%' % (
+        #         pi['gpuid'], pi['username'], pi['wechatname'], int(pi['mem_usage']), int(pi['cpu_percent'])
+        #     ))
         report.append('=' * 10)
     if report != []: del report[-1]
     lock.release()
