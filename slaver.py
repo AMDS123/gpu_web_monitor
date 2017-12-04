@@ -100,7 +100,7 @@ opt = parser.parse_args()
 url = 'http://%s:%s' % (opt.address, opt.port)
 name_dict = dict([
     line.strip().split()
-    for line in open('username_to_wechatname.txt', encoding = 'utf8')
+    for line in open('username_to_wechatname.txt')
 ])
 mean_info = None
 
